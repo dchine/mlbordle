@@ -2,7 +2,7 @@ from flask import Flask
 from flask_apscheduler import APScheduler
 from game_logic import get_new_answer
 
-answer = {}
+answer = get_new_answer()
 def get_daily_answer():
     global answer
     answer = get_new_answer()
