@@ -1,6 +1,6 @@
 from flask import Blueprint, flash, redirect, render_template, request, url_for
 from App.game_logic import get_player
-from App import answer
+from App.app import answer
 
 
 main = Blueprint('main', __name__)

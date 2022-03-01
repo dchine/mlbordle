@@ -15,7 +15,7 @@ def create_app():
     app = Flask(__name__)
     scheduler = APScheduler()
     app.config['SECRET_KEY'] = 'secret-key-goes-here'
-    
+
     answer = get_new_answer()
     scheduler.add_job(id = 'Scheduled Task', func=get_daily_answer, trigger="interval", minutes=3)
     scheduler.start()
@@ -24,3 +24,7 @@ def create_app():
     app.register_blueprint(main_blueprint)
 
     return app
+
+if __name__ == "__main__":
+    app = create_app()
+    app.run(threaded=True, port=5000)
