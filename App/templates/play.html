@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  
+</head>
+
+<body>
+    <header>
+        <a href="" class="logo">MLBordle</a>
+        <input class="menu-btn" type="checkbox" id="menu-btn" />
+        <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+        <ul class="menu">
+          <li><a href="#about">How to Play</a></li>
+          <li><a href="#stats">Stats</a></li>
+        </ul>
+    </header>
+  <main>
+    <div class="container guess">
+        <div class="guess-bar">
+            <form class="guess-form"method="POST">
+                <input type="text" class="guess-input" name="guess_input" placeholder="Enter a player">
+            </form>
+        </div>
+    </div>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="notification is-danger">
+            {{ messages[0] }}
+        </div>
+        {% endif %}
+    {% endwith %}
+    <div class="container game-container">
+        <div class="game-table">
+            <div class="game-table-lables">
+                <div class="game-table-row">
+                    <div class="game-table-cell gtc-name">Name</div>
+                    <div class="game-table-cell">Age</div>
+                    <div class="game-table-cell">Team</div>
+                    <div class="game-table-cell">League</div>
+                    <div class="game-table-cell">Division</div>
+                    <div class="game-table-cell">Position</div>
+                    <div class="game-table-cell">Number</div>
+                    <div class="game-table-cell">Bats</div>
+                    <div class="game-table-cell">Throws</div>
+                </div>
+            </div>
+            <div class="game-table-body">
+            {% for guess_player in guess_list %}
+                <div class="game-table-row">
+                {% for k,v in guess_player.items() %}
+                    {% if k == 'Name' %}
+                        {% if v == answer[k] %}
+                        <div class="game-table-cell player-info gtc-name" style="background-color: darkgreen;">{{ v }}</div>
+                        {% else %}
+                        <div class="game-table-cell player-info gtc-name">{{ v }}</div>
+                        {%  endif %}
+                    {% else %}
+                        {% if v == answer[k] %}
+                        <div class="game-table-cell player-info" style="background-color: darkgreen;">{{ v }}</div>
+                        {% else %}
+                        <div class="game-table-cell player-info">{{ v }}</div>
+                        {%  endif %}
+                    {%  endif %}
+                {% endfor %}
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+
+  </main>
+</body>
+
+</html>
