@@ -1,10 +1,10 @@
 from flask import Flask
 from flask_apscheduler import APScheduler
-from game_logic import get_new_answer
+from .game_logic import get_new_answer
 
 answer = get_new_answer()
 def get_daily_answer():
-    global answer
+    global answers
     answer = get_new_answer()
     print(answer)
     return 
@@ -18,11 +18,7 @@ def create_app():
     scheduler.add_job(id = 'Scheduled Task', func=get_daily_answer, trigger="interval", minutes=1)
     scheduler.start()
 
-    from main import main as main_blueprint
+    from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
 
     return app
-
-if __name__ == "__main__":
-    app = create_app()
-    app.run(threaded=True, port=5000)

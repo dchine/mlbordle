@@ -2,7 +2,7 @@ import csv
 import random
 
 players = []
-with open('./players/all-players.csv', encoding='utf-8') as f:
+with open('./app/players/all-players.csv', encoding='utf-8') as f:
     reader = csv.DictReader(f)
     players = list(reader)[1:]
 
