@@ -15,8 +15,8 @@ def create_app():
     scheduler = APScheduler()
     app.config['SECRET_KEY'] = 'secret-key-goes-here'
 
-    scheduler.add_job(id = 'Scheduled Task', func=get_daily_answer, trigger="interval", minutes=1)
-    scheduler.start()
+    #scheduler.add_job(id = 'Scheduled Task', func=get_daily_answer, trigger="interval", minutes=1)
+    #scheduler.start()
 
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)

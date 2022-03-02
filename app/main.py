@@ -1,12 +1,12 @@
 from flask import Blueprint, flash, redirect, render_template, request, url_for
-from .game_logic import get_player
-from . import answer
+from .game_logic import get_player, get_new_answer
+#from . import answer
 
 
 main = Blueprint('main', __name__)
 guess_list = []
 guess_count = 0
-game_answer = answer
+game_answer = get_new_answer()
 
 
 
