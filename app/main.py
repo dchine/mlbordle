@@ -4,12 +4,8 @@ from .game_logic import get_player, get_new_answer
 
 
 main = Blueprint('main', __name__)
-guess_list = []
-guess_count = 0
+
 game_answer = get_new_answer()
-
-
-
 
 @main.route('/')
 def index():
@@ -17,8 +13,8 @@ def index():
 
 @main.route('/play', methods=['POST', 'GET'])
 def play():
-    global guess_list
-    global guess_count
+    guess_list = []
+    guess_count = 0
     if request.method == 'POST':
         guess = request.form['guess_input']
         if get_player(guess):
