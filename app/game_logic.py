@@ -1,15 +1,19 @@
 import csv
 import random
+from collections import OrderedDict
 
 players = []
 with open('./app/players/all-players.csv', encoding='utf-8') as f:
     reader = csv.DictReader(f)
     players = list(reader)[1:]
+    player_names = [x['Name'] for x in players]
 
 def get_player(name):
     player = [x for x in players if x['Name'].lower() == name.lower()]
+    
     if player:
-        return player[0]
+        player = player[0]
+        return player
     else:
         return False
 

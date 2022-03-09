@@ -23,7 +23,7 @@
     <div class="container guess">
         <div class="guess-bar">
             <form class="guess-form"method="POST">
-                <input type="text" class="guess-input" name="guess_input" placeholder="Enter a player">
+                <input type="text" class="guess-input" name="guess_input" placeholder="Enter a player" aria-autocomplete="list">
             </form>
         </div>
     </div>
@@ -52,13 +52,14 @@
             <div class="game-table-body">
             {% for guess_player in guess_list %}
                 <div class="game-table-row">
+                    {% if guess_player['Name'] == answer['Name'] %}
+                        <div class="game-table-cell player-info gtc-name" style="background-color: darkgreen;">{{ guess_player['Name'] }}</div>
+                    {% else %}
+                        <div class="game-table-cell player-info gtc-name">{{ guess_player['Name'] }}</div>
+                    {%  endif %}
                 {% for k,v in guess_player.items() %}
                     {% if k == 'Name' %}
-                        {% if v == answer[k] %}
-                        <div class="game-table-cell player-info gtc-name" style="background-color: darkgreen;">{{ v }}</div>
-                        {% else %}
-                        <div class="game-table-cell player-info gtc-name">{{ v }}</div>
-                        {%  endif %}
+                        
                     {% else %}
                         {% if v == answer[k] %}
                         <div class="game-table-cell player-info" style="background-color: darkgreen;">{{ v }}</div>
