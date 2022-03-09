@@ -13,7 +13,7 @@ def get_daily_game():
     game_answer = get_new_answer()
     print(game_answer)
 
-scheduler.add_job(id = 'Scheduled Task', func=get_daily_game, trigger="interval", seconds=30)
+scheduler.add_job(id = 'Scheduled Task', func=get_daily_game, trigger="interval", minutes=5)
 scheduler.start()
 
 def create_game_session():
