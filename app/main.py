@@ -17,7 +17,7 @@ scheduler.add_job(id = 'Scheduled Task', func=get_daily_game, trigger="interval"
 scheduler.start()
 
 def create_game_session():
-    #session.permanent = True
+    session.permanent = True
     if 'answer' in session:
         if session['answer'] != game_answer:
             session['guess_list'] = []
