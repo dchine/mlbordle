@@ -22,9 +22,14 @@
   <main>
     <div class="container guess">
         <div class="guess-bar">
-            <form class="guess-form"method="POST">
-                <input type="text" class="guess-input" name="guess_input" placeholder="Enter a player" aria-autocomplete="list">
+            <form class="guess-form" method="POST">
+                <input type="text" class="guess-input" name="guess_input" placeholder="Enter a player" list="players" results=5 >
             </form>
+            <datalist id="players">
+                {% for player in player_names %}
+                    <option value="{{ player }}"></option>
+                {% endfor %}
+            </datalist>
         </div>
     </div>
     {% with messages = get_flashed_messages() %}
