@@ -46,6 +46,6 @@ def play():
         else:
             flash("Player does not exist!")
         return redirect(url_for('main.play'))
-    return render_template('play.html', guess_list=session['guess_list'], answer=game_answer, player_names=player_names)
+    return render_template('play.html', guess_list=session['guess_list'], guess_count=session['guess_count'], answer=game_answer, player_names=player_names)
 
 

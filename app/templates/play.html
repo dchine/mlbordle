@@ -6,6 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <style>
+      {% if guess_count >= 6 %}
+        input[name=guess_input]{
+            pointer-events: none;
+        }
+      {% endif %}
+  </style>
   
 </head>
 
@@ -20,12 +27,38 @@
         </ul>
     </header>
   <main>
-    <div class="container guess">
+    <div id="about" class="overlay">
+        <div class="popup">
+            <h2>How to Play</h2>
+            <a class="close" href="#">&times;</a>
+            <div class="content">
+                <ul>
+                    <li>There is a new MLB player every day!</li>
+                    <li>You only have six guesses, so choose wisely.</li>
+                    <li>Green columns mean there is a match!</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="stats" class="overlay">
+        <div class="popup">
+            <h2>COMING SOON</h2>
+            <a class="close" href="#">&times;</a>
+            <div class="content">
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="guess-container">
         <div class="guess-bar">
             <form class="guess-form" method="POST">
-                <input type="text" class="guess-input" name="guess_input" placeholder="Enter a player" list="players" results=5 >
+                <input type="text" class="guess-input" name="guess_input" placeholder="Enter a player" list="players" 
+                autocomplete="off" 
+                {% if guess_count >= 6 %}tabindex="-1"{% endif %}>
             </form>
-            <datalist id="players">
+            <datalist id="players" >
                 {% for player in player_names %}
                     <option value="{{ player }}"></option>
                 {% endfor %}
@@ -39,20 +72,18 @@
         </div>
         {% endif %}
     {% endwith %}
-    <div class="container game-container">
+    <div class="game-container">
         <div class="game-table">
-            <div class="game-table-lables">
-                <div class="game-table-row">
+            <div class="game-table-row">
                     <div class="game-table-cell gtc-name">Name</div>
                     <div class="game-table-cell">Age</div>
                     <div class="game-table-cell">Team</div>
-                    <div class="game-table-cell">League</div>
-                    <div class="game-table-cell">Division</div>
-                    <div class="game-table-cell">Position</div>
-                    <div class="game-table-cell">Number</div>
+                    <div class="game-table-cell">Lg.</div>
+                    <div class="game-table-cell">Div.</div>
+                    <div class="game-table-cell">Pos.</div>
+                    <div class="game-table-cell">#</div>
                     <div class="game-table-cell">Bats</div>
                     <div class="game-table-cell">Throws</div>
-                </div>
             </div>
             <div class="game-table-body">
             {% for guess_player in guess_list %}
