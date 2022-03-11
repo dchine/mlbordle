@@ -46,26 +46,24 @@
             <h2>COMING SOON</h2>
             <a class="close" href="#">&times;</a>
             <div class="content">
-                
             </div>
         </div>
     </div>
 
     <div class="guess-container">
-        
+        <div class="guess-bar">
             <form class="guess-form" method="POST">
-                <input type="text" class="guess-input" name="guess_input" placeholder="Enter a player" list="players" 
+                <input type="search" class="guess-input" name="guess_input" placeholder="Enter a player" list="players" 
                 autocomplete="off" enterkeyhint="enter"
                 {% if guess_count >= 6 %}tabindex="-1"{% endif %}>
-            </form>
-            <datalist id="players" >
-                <select>
+            
+                <datalist id="players" >
                 {% for player in player_names %}
                     <option value="{{ player }}">{{ player }}</option>
                 {% endfor %}
-                </select>
-            </datalist>
-        
+                </datalist>
+            </form>
+        </div>
     </div>
     {% with messages = get_flashed_messages() %}
         {% if messages %}
