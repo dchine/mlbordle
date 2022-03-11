@@ -53,8 +53,8 @@
     <div class="guess-container">
         <div class="guess-bar">
             <form class="guess-form" method="POST">
-                <input type="search" class="guess-input" name="guess_input" placeholder="Enter a player" list="players" 
-                autocomplete="off" enterkeyhint="enter"
+                <input type="text" class="guess-input" name="guess_input" placeholder="Enter a player" list="players" 
+                autocomplete="on" enterkeyhint="enter"
                 {% if guess_count >= 6 %}tabindex="-1"{% endif %}>
             
                 <datalist id="players" >
